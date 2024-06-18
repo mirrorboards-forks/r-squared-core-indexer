@@ -303,7 +303,7 @@ void elasticsearch_plugin_impl::doVisitor(const optional <operation_history_obje
    auto fill_price = (o_v.fill_receives_amount.value/(double)asset::scaled_precision(fill_receives_asset.precision).value) /
            (o_v.fill_pays_amount.value/(double)asset::scaled_precision(fill_pays_asset.precision).value);
    vs.fill_data.fill_price_units = fill_price;
-   vs.fill_data.fill_price = o_v.fill_fill_price;
+   // vs.fill_data.fill_price = o_v.fill_fill_price;
    vs.fill_data.is_maker = o_v.fill_is_maker;
 }
 
@@ -391,7 +391,7 @@ void elasticsearch_plugin_impl::prepareBulk(const account_transaction_history_id
    const std::string _id = fc::json::to_string(ath_id);
    fc::mutable_variant_object bulk_header;
    bulk_header["_index"] = index_name;
-   bulk_header["_type"] = "data";
+   // bulk_header["_type"] = "data";
    bulk_header["_id"] = fc::to_string(ath_id.space_id) + "." + fc::to_string(ath_id.type_id) + "."
                       + fc::to_string(ath_id.instance.value);
    prepare = graphene::utilities::createBulk(bulk_header, std::move(bulk_line));
